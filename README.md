@@ -5,7 +5,7 @@ The study was performed in collaboration at the European Institute of Oncology (
 
 Primary findings for this project were published here: (paper link to be added)
 
-The raw data can be accessed at: GSE252968 (new data) and GSE191246 (previously published in https://www.nature.com/articles/s41420-022-00893-x)
+The raw data can be accessed at: GSE252968 (newly generated data) and GSE191246 (previously published in https://www.nature.com/articles/s41420-022-00893-x)
 
 An intermediate object that can be used together with the provided code to reproduce the figures from the publication, but also including further exploratory analyses we conducted is available on zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13960874.svg)](https://doi.org/10.5281/zenodo.13960874)
 
