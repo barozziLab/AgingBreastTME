@@ -9,5 +9,9 @@ The raw data can be accessed at: (GEO and zenodo links to be added here)
 
 ## Study design
 ![Approach_Outline](https://github.com/user-attachments/assets/d7645144-6530-48e8-9066-ed9b60b1a3c4)
+TT ... Triple Therapy  
+C ... Cyclophosphamide  
+V ... Vinorelbine  
+αPD-1 ... monoclonal antibody targeting PD1  
 
 # Directory Structure
