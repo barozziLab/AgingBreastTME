@@ -7,5 +7,7 @@ Primary findings for this project were published here: (link to be added)
 
 The raw data can be accessed at: (GEO and zenodo links to be added here)
 
-[Approach_Outline.pdf](https://github.com/user-attachments/files/17457854/Approach_Outline.pdf)
+## Study design
+![Approach_Outline](https://github.com/user-attachments/assets/d7645144-6530-48e8-9066-ed9b60b1a3c4)
 
+# Directory Structure
