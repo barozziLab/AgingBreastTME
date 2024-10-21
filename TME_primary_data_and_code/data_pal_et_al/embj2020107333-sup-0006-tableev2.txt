@@ -1,0 +1,15 @@
+Specimen ID	Patient Age	Tumor Type	Tumor Size (mm)	Grade	BRCA1 Mutation	HER2 Amplification
+TN-0126	64	TNBC	64	3		 
+TN-0135	61	TNBC	22	3		
+TN-0106	65	TNBC	25	3		
+TN-0114-T2	84	TNBC	17	3		
+TN-B1-4031	25	TNBC (BRCA1)	20	3	c.4484G>T	
+TN-B1-0131	84	TNBC (BRCA1)	25	3	c.1252G>T	
+TN-B1-0554	29	TNBC (BRCA1)	37	3	c.5382_5383ins C	
+TN-B1-0177	30	TNBC (BRCA1)	13	3	c.4184del4 in exon 11	
+HER2-0308	32	HER2 amplified	20	3		9.4, 1.5 (6.3)
+HER2-0337	66	HER2 amplified	67	3		35.2, nd (nd)
+HER2-0031	47	HER2 amplified	18	3		14.65, 1.5 (9.77)
+HER2-0069	71	HER2 amplified	27	3		22.95, 2.2 (10.4)
+HER2-0161	80	HER2 amplified	45	3		24.6, 1.7 (14.5)
+HER2-0176	60	HER2 amplified	20	3		19.2, 1.8 (10.8)

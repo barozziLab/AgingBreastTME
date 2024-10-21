@@ -1,0 +1,70 @@
+Sample Name	Patient	Description	Source	Condition	Menopause	Parity	Gender	Number of Cells	Number of Cells After Filtering	Number of Genes Detected
+N-0092-total	0092	Normal tissue, total cells	Total	Normal	Pre	Nulliparous	Female	4966	4443	18128
+N-0019-total	0019	Normal tissue, total cells	Total	Normal	Pre	Nulliparous	Female	7130	6361	18628
+N-0280-epi	0280	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Nulliparous	Female	1198	1109	16321
+N-0093-epi	0093	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Nulliparous	Female	9879	8319	18483
+N-0093-total	0093	Normal tissue, total cells	Total	Normal	Pre	Nulliparous	Female	7412	5130	18651
+N-1469-epi	1469	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Nulliparous	Female	3015	2858	16323
+N-0408-epi	0408	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Nulliparous	Female	3089	3004	16143
+N-1105-epi	1105	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Nulliparous	Female	5201	4938	17494
+N-0230.17-total	0230.17	Normal tissue, total cells	Total	Normal	Pre	Nulliparous	Female	3443	3292	18121
+N-0064-epi	0064	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Nulliparous	Female	4785	4047	15342
+N-0064-total	0064	Normal tissue, total cells	Total	Normal	Pre	Nulliparous	Female	1678	1336	15540
+N-0230.16-epi	0230.16	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Parous	Female	2157	1847	15382
+N-0233-total	0233	Normal tissue, total cells	Total	Normal	Pre	Parous	Female	5665	5199	19187
+N-0169-total	0169	Normal tissue, total cells	Total	Normal	Pre	Parous	Female	4605	4267	18610
+N-0123-epi	0023	Normal tissue, epithelial cells	Epithelial	Normal	Pre	Parous	Female	3037	2831	16163
+N-0123-total	0023	Normal tissue, total cells	Total	Normal	Pre	Parous	Female	7371	6498	17956
+N-0342-epi	0342	Normal tissue, epithelial cells	Epithelial	Normal	Post	Nulliparous	Female	7856	7505	18439
+N-0342-total	0342	Normal tissue, total cells	Total	Normal	Post	Nulliparous	Female	10178	9076	18968
+N-0288-total	0288	Normal tissue, total cells	Total	Normal	Post	Nulliparous	Female	2320	1904	16950
+N-0021-total	0021	Normal tissue, total cells	Total	Normal	Post	Parous	Female	2463	1551	15221
+N-0275-epi	0275	Normal tissue, epithelial cells	Epithelial	Normal	Post	Parous	Female	6401	6096	17268
+N-0275-total	0275	Normal tissue, total cells	Total	Normal	Post	Parous	Female	1914	1469	16916
+N-0372-epi	0372	Normal tissue, epithelial cells	Epithelial	Normal	Post	Parous	Female	12212	11162	18453
+N-0372-total	0372	Normal tissue, total cells	Total	Normal	Post	Parous	Female	4825	3806	18770
+B1-0894	0894	Normal BRCA1+/- pre-neoplastic, total cells	Total	Normal BRCA1+/- pre-neoplastic	NA	Nulliparous	Female	7850	7330	17860
+B1-0033	0033	Normal BRCA1+/- pre-neoplastic, total cells	Total	Normal BRCA1+/- pre-neoplastic	NA	Nulliparous	Female	6827	5931	17434
+B1-0023	0023	Normal BRCA1+/- pre-neoplastic, total cells	Total	Normal BRCA1+/- pre-neoplastic	NA	Parous	Female	5932	5019	17537
+B1-0090	0090	Normal BRCA1+/- pre-neoplastic, total cells	Total	Normal BRCA1+/- pre-neoplastic	NA	Parous	Female	5663	4960	17867
+TN-0126	0126	Triple negative tumor, total cells	Total	Triple negative tumor	NA	NA	Female	3666	2766	18090
+TN-0135	0135	Triple negative tumor, total cells	Total	Triple negative tumor	NA	NA	Female	15870	15212	18431
+TN-0106	0106	Triple negative tumor, total cells	Total	Triple negative tumor	NA	NA	Female	1065	879	17052
+TN-0114-T2	0114	Triple negative tumor, total cells	Total	Triple negative tumor	NA	NA	Female	2015	1575	17430
+TN-B1-4031	4031	Triple negative tumor (BRCA1), total cells	Total	Triple negative (BRCA1) tumor	NA	NA	Female	5581	5228	17743
+TN-B1-0131	0131	Triple negative tumor (BRCA1), total cells	Total	Triple negative (BRCA1) tumor	NA	NA	Female	6456	5688	17571
+TN-B1-0554	0554	Triple negative tumor (BRCA1), total cells	Total	Triple negative (BRCA1) tumor	NA	NA	Female	9593	6787	19462
+TN-B1-0177	0177	Triple negative tumor (BRCA1), total cells	Total	Triple negative (BRCA1) tumor	NA	NA	Female	21130	16685	19518
+HER2-0308	0308	HER2+ tumor, total cells	Total	HER2+ tumor	NA	NA	Female	4779	4160	18316
+HER2-0337	0337	HER2+ tumor, total cells	Total	HER2+ tumor	NA	NA	Female	12288	8252	18219
+HER2-0031	0031	HER2+ tumor, total cells	Total	HER2+ tumor	NA	NA	Female	4737	4084	17757
+HER2-0069	0069	HER2+ tumor, total cells	Total	HER2+ tumor	NA	NA	Female	618	456	15355
+HER2-0161	0161	HER2+ tumor, total cells	Total	HER2+ tumor	NA	NA	Female	6561	4863	18353
+HER2-0176	0176	HER2+ tumor, total cells	Total	HER2+ tumor	NA	NA	Female	19027	10103	19577
+ER-0319	0319	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	3406	2846	18231
+ER-0001	0001	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	7393	5754	18090
+ER-0125	0125	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	7289	4226	17479
+ER-0360	0360	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	6676	3714	17894
+ER-0114-T3	0114	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	8822	7723	18626
+ER-0032	0032	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	1445	1108	17159
+ER-0042	0042	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	5439	4529	16860
+ER-0025	0025	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	10592	8102	18312
+ER-0151	0151	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	3357	2527	18616
+ER-0163	0163	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	7334	5990	17420
+ER-0029-7C	0029	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	3395	3102	17421
+ER-0029-9C	0029	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	8012	7261	17565
+ER-0040-T	0040	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	6468	5904	16944
+ER-0040-LN	0040	Lymph node, total cells	Total	Involved LN	NA	NA	Female	6196	5661	17468
+ER-0043-T	0043	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	5572	4185	17711
+ER-0043-LN	0043	Lymph node, total cells	Lymph node	Involved LN	NA	NA	Female	912	745	14987
+ER-0056-T	0056	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	4140	2704	14422
+ER-0056-LN	0056	Lymph node, total cells	Lymph node	Involved LN	NA	NA	Female	7241	6611	15870
+ER-0064-T	0064	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	4037	3603	16689
+ER-0064-LN	0064	Lymph node, total cells	Lymph node	Involved LN	NA	NA	Female	2411	2328	15736
+ER-0167-T	0167	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	13848	7014	18355
+ER-0167-LN	0167	Lymph node, total cells	Lymph node	Involved LN	NA	NA	Female	8422	4392	18006
+ER-0173-T	0173	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Female	9872	7766	19316
+ER-0173-LN	0173	Lymph node, total cells	Lymph node	Involved LN	NA	NA	Female	3843	3257	19054
+mER-0178	0178	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Male	13510	7274	15887
+mER-0068-T	0068	ER+ tumor, total cells	Total	ER+ tumor	NA	NA	Male	1013	802	12778
+mER-0068-LN	0068	Lymph node, total cells	Lymph node	Involved LN	NA	NA	Male	4854	4720	15223
