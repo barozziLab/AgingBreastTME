@@ -1,4 +1,4 @@
-#function collection for TME downstream analysis and visualization
+#function collection for TMS analysis and visualization
 
 library(tidyverse)
 library(Seurat)
@@ -55,3 +55,5 @@ return_permutation_plotdata <- function (sc_utils_obj, FDR_threshold = 0.05, log
   #                                                                                                                                                                    "grey")) + coord_flip()
   return(plot_data)
 }
+
+########################

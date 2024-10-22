@@ -1,11 +1,8 @@
-library(tidyverse)
-library(Seurat)
-library(patchwork)
-library(viridis)
-library(RColorBrewer)
-library(gprofiler2)
-library(clusterCrit)
-library(scCustomize)
+#######################
+## Analysis Pipeline ##
+#######################
+
+# Pre-clustering and re-assignment of cells to compartments, as described in Figure S2A
 
 #~~~~~~~~~~~~~~~~~~~
 #Parameter selection
@@ -21,7 +18,7 @@ subsample_n <- 0 # number of cells to subsample (for Silhouette score), set to 0
 #Preparation
 ############
 if (regress_haemo_genes) {
-  data_folder <- file.path("prepared_so_objects", "after_QC")
+  data_folder <- file.path("../data/objects_after_QC")
   out_folder_combined <- "combined_analysis_regHaem/combined_object"
   out_folder_split <- "combined_analysis_regHaem/split_objects"
   
@@ -30,72 +27,12 @@ if (regress_haemo_genes) {
   if(!dir.exists(out_folder_split)) dir.create(out_folder_split)
   
 } else {
-  data_folder <- file.path("prepared_so_objects", "after_QC")
-  out_folder_combined <- "combined_analysis/combined_object"
-  out_folder_split <- "combined_analysis/split_objects"
+  data_folder <- "../data/objects_after_QC"
+  out_folder_combined <- "combined_object"
+  out_folder_split <- "split_objects"
   
-  if(!dir.exists("combined_analysis")) dir.create("combined_analysis")
   if(!dir.exists(out_folder_combined)) dir.create(out_folder_combined)
   if(!dir.exists(out_folder_split)) dir.create(out_folder_split)
-}
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#scType cell-type annotation - Preparation
-##########################################
-
-# initialize db_list
-db_list <- list()
-
-#1. Full scType-DB plus Bach (any tissue)
-#########################################
-
-source("../celltype_annotation/scType/sctype_and_bach/gene_sets_prepare_multi_tissues.mouse.R")
-source("https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/master/R/sctype_score_.R")
-markers_combined_path <- "../celltype_annotation/scType/sctype_and_bach/ScTypeDB_full_plus_bach_mm.txt"
-
-# prepare genesets, allowing to map to any of the tissues
-gs_list = gene_sets_prepare_multi_bach(path_to_db_file = markers_combined_path, cell_type = NULL)
-
-# add to db_list
-db_list[["full_sctype_bach_any"]] <- gs_list
-
-#2. Only Immune system
-######################
-
-source("../celltype_annotation/scType/sctype_and_bach/gene_sets_prepare_multi_tissues.mouse.R")
-source("https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/master/R/sctype_score_.R")
-markers_combined_path <- "../celltype_annotation/scType/sctype_and_bach/ScTypeDB_full_plus_bach_mm.txt"
-
-# prepare genesets, allowing to map to any of the tissues
-gs_list = gene_sets_prepare_multi_bach(path_to_db_file = markers_combined_path, cell_type = "Immune system")
-
-# add to db_list
-db_list[["Immune_system"]] <- gs_list
-
-#3. Immune system + Mammary Gland
-#################################
-
-source("../celltype_annotation/scType/sctype_and_bach/gene_sets_prepare_multi_tissues.mouse.R")
-source("https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/master/R/sctype_score_.R")
-markers_combined_path <- "../celltype_annotation/scType/sctype_and_bach/ScTypeDB_full_plus_bach_mm.txt"
-
-# prepare genesets, allowing to map to any of the tissues
-gs_list = gene_sets_prepare_multi_bach(path_to_db_file = markers_combined_path, cell_type = c("Immune system", "Mammary Gland"))
-
-# add to db_list
-db_list[["Immune_system_Mammary"]] <- gs_list
-
-#4. Function for cluster - celltype mapping
-###########################################
-
-cl_to_type_top10 <- function(cl, scores, so) {
-  cl_scores <- scores[,rownames(so@meta.data[so@meta.data$seurat_clusters == cl,])]
-  cl_scores_per_type <- rowSums(cl_scores) %>% sort(decreasing = TRUE)
-  summary <- tibble(cluster = cl, 
-                    type = names(cl_scores_per_type), 
-                    score = cl_scores_per_type, 
-                    ncells = sum(so@meta.data$seurat_clusters == cl))
-  return(head(summary, 10))
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,13 +40,13 @@ cl_to_type_top10 <- function(cl, scores, so) {
 ################################
 
 if (stromal_soupx) {
-  stromal_4t1 <- readRDS(file.path(data_folder, "stromal_4t1_soupx.rds"))
+  stromal_4t1 <- readRDS(file.path(data_folder, "stromal.rds"))
 } else {
-  stromal_4t1 <- readRDS(file.path(data_folder, "stromal_4t1.rds"))
+  stromal_4t1 <- readRDS(file.path(data_folder, "stromal_4t1.rds")) # This file is not provided, since it wasn't used.
 }
 
-tumor_immune_4t1 <- readRDS(file.path(data_folder, "tumor_immune_4t1.rds"))                       
-pub_immune_4t1 <- readRDS(file.path(data_folder, "pub_immune_4t1.rds"))
+tumor_immune_4t1 <- readRDS(file.path(data_folder, "tumor_and_immune.rds"))                       
+pub_immune_4t1 <- readRDS(file.path(data_folder, "published_immune.rds"))
 
 if (stromal_soupx) {
   stromal_4t1[["project_label"]] <- "stromal_4t1_soupx"

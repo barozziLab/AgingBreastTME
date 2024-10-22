@@ -1,9 +1,74 @@
-#function collection for TME downstream analysis and visualization
+###################################################################################
+## Function and library collection for TME downstream analysis and visualization ##
+###################################################################################
+
+#~~~~~~~~~~
+# libraries
+###########
 
 library(tidyverse)
 library(Seurat)
+library(clustree)
 library(patchwork)
 library(RColorBrewer)
+library(scProportionTest)
+library(viridis)
+library(readxl)
+library(data.table)
+library(gprofiler2)
+library(clusterCrit)
+library(scCustomize)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#scType cell-type annotation - Preparation
+##########################################
+
+# initialize db_list
+db_list <- list()
+
+#1. Full scType-DB plus Bach (any tissue)
+#########################################
+
+source("../data/scType/gene_sets_prepare_multi_tissues.mouse.R")
+source("https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/master/R/sctype_score_.R")
+markers_combined_path <- "../data/scType/ScTypeDB_full_plus_bach_mm.txt"
+
+# prepare genesets, allowing to map to any of the tissues
+gs_list = gene_sets_prepare_multi_bach(path_to_db_file = markers_combined_path, cell_type = NULL)
+
+# add to db_list
+db_list[["full_sctype_bach_any"]] <- gs_list
+
+#2. Only Immune system
+######################
+
+# prepare genesets, allowing to map to any of the tissues
+gs_list = gene_sets_prepare_multi_bach(path_to_db_file = markers_combined_path, cell_type = "Immune system")
+
+# add to db_list
+db_list[["Immune_system"]] <- gs_list
+
+#3. Immune system + Mammary Gland
+#################################
+
+# prepare genesets, allowing to map to any of the tissues
+gs_list = gene_sets_prepare_multi_bach(path_to_db_file = markers_combined_path, cell_type = c("Immune system", "Mammary Gland"))
+
+# add to db_list
+db_list[["Immune_system_Mammary"]] <- gs_list
+
+#4. Function for cluster - celltype mapping
+###########################################
+
+cl_to_type_top10 <- function(cl, scores, so) {
+  cl_scores <- scores[,rownames(so@meta.data[so@meta.data$seurat_clusters == cl,])]
+  cl_scores_per_type <- rowSums(cl_scores) %>% sort(decreasing = TRUE)
+  summary <- tibble(cluster = cl, 
+                    type = names(cl_scores_per_type), 
+                    score = cl_scores_per_type, 
+                    ncells = sum(so@meta.data$seurat_clusters == cl))
+  return(head(summary, 10))
+}
 
 #~~~~~~~~~~~~~~~
 # custom dotplot
@@ -30,7 +95,7 @@ custom_dotplot <- function(so, features, color_pal, cluster.idents = FALSE, assa
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # custom permutation plot fct
 #############################
-# adaptation of permutation_plot function to return plot_data
+# adaptation of permutation_plot function from scProportionTest package to return plot_data
 
 return_permutation_plotdata <- function (sc_utils_obj, FDR_threshold = 0.05, log2FD_threshold = log2(1.5), 
                                          order_clusters = TRUE) 

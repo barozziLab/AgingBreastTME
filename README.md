@@ -16,4 +16,32 @@ C ... Cyclophosphamide
 V ... Vinorelbine  
 αPD-1 ... monoclonal antibody targeting PD1  
 
-# Directory Structure
+## Reproducing the analyses
+
+For reproducing the analyses for the publication, we recommend using the intermediate file provided on the zenodo link above (`so.split.processed.rds`), which contains the pre-processed and clustered cells as seurat objects, split by compartment (tumor, immune and stroma). Therefore, download the file to the `data` directory.
+
+### Aging Breast TME
+
+If you wish to additionally redo the analysis from the QC filtered objects to this file, you can do so by additionally downloading the three other files on zenodo. We recommend using our intermediate file, as minimal changes in the clustering results may result in problems with the downstream analyses, since the code contains sections in which manual labels from the publication are added to the object.
+In case you still wish to rerun this part, download the three objects (`published_immune.rds`, `stromal.rds`, `tumor_and_immune.rds`) and save them in the following directory: `data/objects_after_QC` and activate the execution of `0_combined_analysis.R` in `RUN_AgingBreastTME_analyses.R`.
+
+All scripts for this part of the analysis can be executed by running `RUN_AgingBreastTME_analyses.R` in `AgingBreastTME_analysis`, which is also where the sessionInfo is provided.
+
+### TME primary data
+
+
+
+### TME Cell-cell communication analysis
+
+All analyses can be executed with the `RUN_liana.R` script, however, note that `2_liana_orthologs.R` was executed in a separate R environment on an HPC. The separate sessionInfo file is available in `TME_CellCellCommunication/sessionInfo_hpc.txt`, while `TME_CellCellCommunication/sessionInfo.txt` refers to the environment that all other scripts were executed in.
+
+### TMS analysis
+
+The raw data from the Tabula Muris Senis compendium can be downloaded here: https://figshare.com/ndownloader/files/23872862 and converted to a seurat object, then saved in the `data/` directory.
+All analyses can be executed via the run script (`TMS_RUN_young_vs_old.R`), in which parameters and options for the analysis can be selected and adapted.
+
+The `multiK_conserveMem.fct` script contains the code for a memory-efficient and parallelizable reimplementation of multiK (original code see: https://github.com/perou-lab/MultiK), which we used to assess optimal clustering resolutions, together with the silhouette score.
+
+This whole analysis was conducted on an HPC, therefore the used R environment differs from the one used for the other analyses. The respective sessionInfo file can be found in `TMS_analysis/`.
+
+## Directory Structure

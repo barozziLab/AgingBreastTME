@@ -723,3 +723,5 @@ for (clus in unique(markers_old_young_stroma$cluster_id)) {
 }
 
 saveRDS(object = so.list, file = paste0(subFolder, "so_split.rds"))
+
+########################

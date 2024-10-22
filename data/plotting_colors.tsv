@@ -1,0 +1,17 @@
+condition	compartment	color
+old triple_treated	cd45+	#C7C7F7
+old untreated	cd45+	#7D7DED
+young triple_treated	cd45+	#2222E1
+young untreated	cd45+	#13138B
+old triple_treated	epcam+	#D9D9D9
+old untreated	epcam+	#969696
+young triple_treated	epcam+	#636363
+young untreated	epcam+	#252525
+old triple_treated	stromal	#FAC4C8
+old untreated	stromal	#F26E77
+young triple_treated	stromal	#E01A27
+young untreated	stromal	#870D15
+young	tms_stromal	#8A7D0A
+old	tms_stromal	#FEEA10
+young	tms_immune	#23483C
+old	tms_immune	#79BEA8

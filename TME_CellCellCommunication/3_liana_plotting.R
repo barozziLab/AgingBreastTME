@@ -1,31 +1,28 @@
 # LIANA cell-cell communication analysis
 
-setwd("~/Documents/tumor_microenv_IEO/liana/")
-
 library(tidyverse)
 library(magrittr)
 library(liana)
 library(cowplot)
 library(ggridges)
 library(gdata)
-source("liana.fct.lib.R")
 
 #~~~~~~~~~~~~~~~~
 # explore results
 #################
 
-so.split.processed <- readRDS("../combined_analysis/split_objects/so.split.processed.rds")
-labels <- read.xls("../combined_analysis/split_objects/results_20230925_metadata_final_v2.xlsx") %>%
+so.split.processed <- readRDS("../data/so.split.processed.rds")
+labels <- read.xls("../data/Table_S2_plus_colors.xlsx") %>%
   mutate(compartment = ifelse(compartment == "cd45-", "stromal", compartment)) %>%
-  mutate(cluster = factor(cluster))
+  mutate(Cluster_number = factor(Cluster_number))
 
 metadata <- rbind(so.split.processed[["stromal"]][[]],
       so.split.processed[["epcam+"]][[]],
       so.split.processed[["cd45+"]][[]]) %>%
-  left_join(labels, by = c("split_group" = "compartment", "seurat_clusters" = "cluster")) %>%
-  mutate(sub_compartment = ifelse(sub_compartment == "Cancer", "tumor", sub_compartment))
+  left_join(labels, by = c("split_group" = "compartment", "seurat_clusters" = "Cluster_number")) %>%
+  mutate(sub_compartment = ifelse(Sub_compartment == "Cancer", "tumor", Sub_compartment))
 
-liana_all_res <- readRDS("vsc/results/liana_res_orthologs.rds")
+liana_all_res <- readRDS("results/liana_res_orthologs.rds")
 
 res <- rbind(liana_all_res$subcomp$young %>% mutate(age = "young"),
              liana_all_res$subcomp$old %>% mutate(age = "old")) %>%
@@ -38,24 +35,6 @@ res <- rbind(liana_all_res$subcomp$young %>% mutate(age = "young"),
   mutate(interaction_score = natmi.edge_specificity * sca.LRscore) # compute interaction score (specificity * magnitude)
 
 write_tsv(res, file = "results/liana_res_combined_y_o.tsv")
-
-# overview plots
-# overview_plots <- list(list())
-# for (age in unique(res$age)) {
-#   
-#   if(age == "young") {pal = "Purples"} else {pal = "Greens"}
-#   
-#   for (method in c("Mean", "Median")) {
-#     
-#     overview_plots[[age]][[method]] <- 
-#       liana_overview_dotplot(liana_res = res, age = age, summary_stat = method, color_palette = pal)
-#     
-#     # ggsave(plot = overview_plots[[age]][[method]], 
-#     #        filename = paste0("results/liana_stats_subcomp_", age, "_", method, ".pdf"),
-#     #        device = "pdf", width = 6.5, height = 4.5)
-#   }
-#   
-# }
 
 #~~~~~~~~~~~~~~~
 # overview plots
@@ -157,15 +136,6 @@ legend <- cowplot::get_legend(mean_plt +
                             legend.title = element_text(size = 10), 
                             legend.text = element_text(size = 10)))
 
-# plot grid
-# top_row <- cowplot::plot_grid(target_bar_mean_y, mean_plt_stripped, target_bar_mean_o, 
-#                               rel_widths = c(0.68, 1, 0.68), ncol = 3)
-# 
-# legend_grid <- cowplot::plot_grid(NULL, legend, rel_heights = c(0.1, 0.8), ncol = 1)
-# bottom_row <- cowplot::plot_grid(NULL, source_bar_mean, legend_grid,
-#                                  rel_widths = c(0.68, 1, 0.68), ncol = 3)
-# mean_grid <- cowplot::plot_grid(top_row, bottom_row, rel_heights = c(1, 1.3), ncol = 1)
-
 mean_grid <- cowplot::plot_grid(target_bar_mean_y, mean_plt_stripped, target_bar_mean_o, 
                    NULL, source_bar_mean, NULL, 
                    rel_widths = c(0.68, 1, 0.68), rel_heights = c(0.82, 1), ncol = 3)
@@ -173,8 +143,6 @@ mean_grid <- cowplot::plot_grid(target_bar_mean_y, mean_plt_stripped, target_bar
 ggsave(filename = "results/liana_stats_subcomp_mean.pdf", plot = mean_plt, width = 7.5, height = 4)
 ggsave(filename = "results/liana_stats_subcomp_mean_plotgrid.pdf", plot = mean_grid, width = 8.2, height = 4.2)
 ggsave(filename = "results/liana_stats_subcomp_mean_plotgrid_legend.pdf", plot = legend, width = 4, height = 6)
-
-
 
 ## Median interaction score
 
@@ -498,7 +466,7 @@ ji_by_cut_receptors <- ji_tibble %>%
   xlab("Aggregated rank cutoff") +
   scale_color_brewer(palette = "Dark2") +
   facet_wrap(~stat, scales = "free") +
-  theme_minimal()
+  theme_bw()
 
 ji_rank_ligands_receptors <- cowplot::plot_grid(ji_by_cut_ligands, ji_by_cut_receptors, ncol = 2)
 
@@ -564,3 +532,5 @@ for (source_filter in unique(dp_res$source)) {
          width = 10, height = 12)
   
 }
+
+########################

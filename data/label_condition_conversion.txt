@@ -1,0 +1,11 @@
+label	condition
+young_ctr	stroma_young_ctr
+young_treated	stroma_young_treated
+ctr_young_epcam	epcam_young_ctr
+ctr_young_cd45	cd45_young_ctr
+tripla_young_cd45	cd45_young_treated
+old_treated	stroma_old_treated
+old_ctr	stroma_old_ctr
+ctr_old_epcam	epcam_old_ctr
+ctr_old_cd45	cd45_old_ctr
+tripla_old_cd45	cd45_old_treated

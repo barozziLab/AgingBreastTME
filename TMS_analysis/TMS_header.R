@@ -22,9 +22,6 @@ library(clusterProfiler)
 
 source("TMS.ds_functions.R")
 
-#source("../../MultiK_parallel_consMem/multiK_conserveMem.fct.R")
-#source("../../MultiK_parallel_consMem/clustering.fct.R")
-
 source("multiK_conserveMem.fct.R")
 source("clustering.fct.R")
 
@@ -32,4 +29,6 @@ source("clustering.fct.R")
 # Color schemes
 ###############
 
-colors_tme <- read_tsv("plotting_colors.tsv")
+colors_tme <- read_tsv("../data/plotting_colors.tsv")
+
+########################

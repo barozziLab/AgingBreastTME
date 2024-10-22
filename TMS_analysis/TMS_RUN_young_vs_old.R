@@ -1,18 +1,13 @@
 # This analysis aims to reveal differences in cell populations in the mammary gland of young and old mice
 
-#setwd("~/Documents/tumor_microenv_IEO/TMS_analysis/")
-
 source("TMS_header.R")
 
 #~~~~~~~~~~~~~~~
 #setup variables
 ################
 
-#dataFolder <- "data/"
-#resultsFolder <- "results/"
-
-dataFolder <- "/gpfs/data/fs72016/stephangrun/TME_revision/TMS_analysis/data/"
-resultsFolder <- "/gpfs/data/fs72016/stephangrun/TME_revision/TMS_analysis/results/"
+dataFolder <- "../data/"
+resultsFolder <- "results/"
 
 #~~~~~~~~~~~~~~~~~~~
 #Parameter selection
@@ -89,4 +84,4 @@ foreach::foreach(i = 1:length(clustering_res),
   }
 parallel::stopCluster(cl)
 
-
+########################

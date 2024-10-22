@@ -2,47 +2,46 @@ library(tidyverse)
 library(Seurat)
 library(liana)
 library(magrittr)
-library(nichenetr)
 library(readxl)
 library(OmnipathR)
 
 
-dataFolder <- "/gpfs/data/fs72016/stephangrun/TME_revision/liana_nichenet/data/"
-resultsFolder <- "/gpfs/data/fs72016/stephangrun/TME_revision/liana_nichenet/results/"
+dataFolder <- "../data/"
+resultsFolder <- "results/"
 
 min_cells <- 10
-n_cores <- 16
+n_cores <- 8
 
-ortholog_resource <- readRDS(file = paste0(dataFolder, "ortholog_resource.rds"))
+ortholog_resource <- readRDS(file = paste0(resultsFolder, "ortholog_resource.rds"))
 so.list <- readRDS(paste0(dataFolder, "so.split.processed.rds"))
 
-annotation_file <- paste0(dataFolder, "results_20230925_metadata_final_v2.xlsx")
+annotation_file <- paste0(dataFolder, "Table_S2_plus_colors.xlsx")
 
 cluster_anno <- read_xlsx(annotation_file) %>%
   mutate(compartment = ifelse(compartment == "cd45-", "stromal", compartment)) %>% 
-  mutate(cluster_label = paste(Cell_Type_Label, cluster, sep = "."))
+  mutate(cluster_label = paste(`Cell-type_label`, Cluster_number, sep = "."))
 
 # update metadata slots
 for (so_name in names(so.list)) {
   ca <- cluster_anno %>% filter(compartment == so_name) %>%
-    mutate(cluster_label = paste(Cell_Type_Label, cluster, sep = ".")) %>%
-    mutate(cluster = factor(cluster))
+    mutate(cluster_label = paste(`Cell-type_label`, Cluster_number, sep = ".")) %>%
+    mutate(Cluster_number = factor(Cluster_number))
   
   so.list[[so_name]]$cluster_label <- so.list[[so_name]]@meta.data %>%
-    left_join(ca, by = c("seurat_clusters" = "cluster")) %>%
+    left_join(ca, by = c("seurat_clusters" = "Cluster_number")) %>%
     pull(cluster_label)
   
   so.list[[so_name]]$age_tm <- so.list[[so_name]]@meta.data %>%
     mutate(age_tm = paste(age, treatment, sep = " ")) %>%
     pull(age_tm)
   
-  so.list[[so_name]]$sub_compartment <- so.list[[so_name]]@meta.data %>%
-    left_join(ca, by = c("seurat_clusters" = "cluster")) %>%
-    pull(sub_compartment)
+  so.list[[so_name]]$Sub_compartment <- so.list[[so_name]]@meta.data %>%
+    left_join(ca, by = c("seurat_clusters" = "Cluster_number")) %>%
+    pull(Sub_compartment)
   
-  so.list[[so_name]]$Cell_Type_Label <- so.list[[so_name]]@meta.data %>%
-    left_join(ca, by = c("seurat_clusters" = "cluster")) %>%
-    pull(Cell_Type_Label)
+  so.list[[so_name]]$`Cell-type_label` <- so.list[[so_name]]@meta.data %>%
+    left_join(ca, by = c("seurat_clusters" = "Cluster_number")) %>%
+    pull(`Cell-type_label`)
   
   Idents(so.list[[so_name]]) <- "cluster_label"
   so.list[[so_name]]@active.ident <- factor(so.list[[so_name]]@active.ident, levels = ca$cluster_label)
@@ -75,7 +74,8 @@ for (age in c("young", "old")) {
   
   # define groups
   so.list[[age]][["interaction_group"]] <- so.list[[age]]@meta.data %>% 
-    mutate(interaction_group = ifelse(split_group == "epcam+", "tumor", cluster_label))
+    mutate(interaction_group = ifelse(split_group == "epcam+", "tumor", cluster_label)) %>%
+    pull(interaction_group)
   
 }
 
@@ -107,7 +107,8 @@ for (age in c("young", "old")) {
   
   # define groups
   so.list[[age]][["interaction_group"]] <- so.list[[age]]@meta.data %>% 
-    mutate(interaction_group = ifelse(split_group == "epcam+", "tumor", sub_compartment))
+    mutate(interaction_group = ifelse(split_group == "epcam+", "tumor", sub_compartment)) %>%
+    pull(interaction_group)
   
 }
 
@@ -139,7 +140,8 @@ for (age in c("young", "old")) {
   
   # define groups
   so.list[[age]][["interaction_group"]] <- so.list[[age]]@meta.data %>% 
-    mutate(interaction_group = ifelse(split_group == "epcam+", "tumor", Cell_Type_Label))
+    mutate(interaction_group = ifelse(split_group == "epcam+", "tumor", Cell_Type_Label)) %>%
+    pull(interaction_group)
   
 }
 
@@ -165,3 +167,6 @@ for (age in c("young", "old")) {
 liana_all_res <- list("cluster" = liana_res_clusters, "subcomp" = liana_res_subcomp, "celltype" = liana_res_celltype)
 saveRDS(liana_all_res, file = paste0(resultsFolder, "liana_res_orthologs.rds"))
 
+writeLines(capture.output(sessionInfo()), paste0(resultsFolder, "sessionInfo_hpc.txt"))
+
+########################

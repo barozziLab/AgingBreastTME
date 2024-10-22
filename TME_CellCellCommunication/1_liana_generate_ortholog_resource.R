@@ -12,4 +12,7 @@ op_resource <- select_resource("Consensus")[[1]]
 ortholog_resource <- generate_homologs(op_resource = op_resource,
                                        target_organism = 10090) # mouse
 
-saveRDS(ortholog_resource, file = "ortholog_resource1.rds")
+if (!dir.exists("results")) { dir.create("results") }
+saveRDS(ortholog_resource, file = "results/ortholog_resource.rds")
+
+########################

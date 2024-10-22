@@ -1,4 +1,4 @@
-# Leiden clustering functions
+# Leiden clustering function implementation for usage with multiK
 # This workflow was inspired by the Seurat package (see comments in the code below, describing the origin of the different parts more specifically)
 
 ##################################################################
