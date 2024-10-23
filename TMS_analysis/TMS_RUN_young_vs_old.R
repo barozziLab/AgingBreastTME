@@ -84,4 +84,6 @@ foreach::foreach(i = 1:length(clustering_res),
   }
 parallel::stopCluster(cl)
 
+writeLines(capture.output(sessionInfo()), "sessionInfo_tms.txt")
+
 ########################

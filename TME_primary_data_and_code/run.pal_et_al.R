@@ -12,7 +12,6 @@ source(in_F)
 #can be downloaded from figshare
 #https://figshare.com/articles/dataset/Data_R_code_and_output_Seurat_Objects_for_single_cell_RNA-seq_analysis_of_human_breast_tissues/17058077
 
-
 ## Load data sets of interest
 
 dois <- c("TNBCSub")
@@ -268,4 +267,4 @@ write_tsv(x = rf_confusion_mat, file = out_F)
 out_F <- paste0("signature.RF.feat_importance.txt")
 write_tsv(x = rf_feature_importance, file = out_F)
 
-########
+########################

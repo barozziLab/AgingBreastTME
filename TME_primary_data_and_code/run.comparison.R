@@ -1,9 +1,14 @@
 
+outFolder <- "comparisons/"
+if (!dir.exists(outFolder)) { dir.create(outFolder) }
+
+setwd(outFolder)
+
 library("tidyverse")
 
 #feature importance comparison
-pal_imp <- read_tsv("../human_pal-data_20230907/signature.RF.feat_importance.txt")
-wu_imp <- read_tsv("../human_wu-data_20230911/signature.age_cutoff=50.RF.feat_importance.txt")
+pal_imp <- read_tsv("../signature.RF.feat_importance.txt")
+wu_imp <- read_tsv("../wu_et_al.age_cutoff=50.RF.feat_importance.txt")
 
 #
 pal_imp_prep <- pal_imp %>% 
@@ -90,3 +95,4 @@ pdf("merge.RF_importance.fisher_tests.stats.pdf", width = 3, height = 7)
 plot(plt_odds / plt_feats / plt_pval)
 dev.off()
 
+########################

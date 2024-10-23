@@ -3,6 +3,7 @@ library("Matrix")
 require("tidyverse")
 require("Seurat")
 
+setwd("data_wu_et_al")
 
 #~~~~~~~~~~~~~~~~
 #Data Preparation
@@ -24,7 +25,8 @@ meta_s1$orig.ident <- gsub("-", "", meta_s1$orig.ident)
 
 #add metadata from table S1 (incl. age)
 metadata <- metadata %>% 
-  left_join(meta_s1, by = "orig.ident")
+  left_join(meta_s1, by = "orig.ident") %>%
+  dplyr::rename(cell_id = `...1`)
 
 ##
 
@@ -105,3 +107,6 @@ dev.off()
 
 saveRDS(so, "so_TNBC_TME.rds")
 
+setwd("../")
+
+########################
