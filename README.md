@@ -49,7 +49,7 @@ All analyses can be executed via the run script (`TMS_RUN_young_vs_old.R`), in w
 
 The `multiK_conserveMem.fct` script contains the code for a memory-efficient and parallelizable reimplementation of multiK (original code see: https://github.com/perou-lab/MultiK), which we used to assess optimal clustering resolutions, together with the silhouette score.
 
-This whole analysis was conducted on an HPC, therefore the used R environment differs from the one used for the other analyses. The respective sessionInfo file can be found in `TMS_analysis/`.
+This whole analysis was conducted on an HPC, therefore the used R environment differs from the one used for the other analyses. The respective sessionInfo file can be found in `TMS_analysis/sessionInfo.txt`.
 
 ## Directory Structure
 ```
