@@ -40,7 +40,8 @@ for Wu et al.
 For reproducing these analyses, start by downloading the respective files. The Pal et al. data can be downloaded here: https://figshare.com/articles/dataset/Data_R_code_and_output_Seurat_Objects_for_single_cell_RNA-seq_analysis_of_human_breast_tissues/17058077 (SeuratObject_TNBCSub.rds). Save the respective file in `data_pal_et_al`.
 The Wu et al. data can be downloaded from: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078. Unpack the zipped file and transfer the content to `data_wu_et_al`.
 
-Then, the run script `run.main.R` can be executed.
+The analysis was performed in a different R environment than most other analyses. There is a sessionInfo.txt file available in the main folder `TME_primary_data_and_code`.
+The run script `run.main.R` can now be executed.
 
 ### TME Cell-cell communication analysis
 
