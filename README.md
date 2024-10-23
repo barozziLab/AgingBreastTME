@@ -5,7 +5,7 @@ The study was performed in collaboration at the European Institute of Oncology (
 
 Primary findings for this project were published here: (paper link to be added).
 
-The raw data can be accessed at: GSE252968 (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252968) (newly generated data) and GSE191246 (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE191246) (previously published in https://www.nature.com/articles/s41420-022-00893-x).
+The raw data can be accessed at: [GSE252968](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252968) (newly generated data) and [GSE191246](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE191246) (previously published in https://www.nature.com/articles/s41420-022-00893-x).
 
 An intermediate object that can be used together with the provided code to reproduce the figures from the publication, but also including further exploratory analyses we conducted is available on zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13960874.svg)](https://doi.org/10.5281/zenodo.13960874)
 
@@ -30,15 +30,10 @@ All scripts for this part of the analysis can be executed by running `RUN_AgingB
 ### TME primary data
 
 This analysis leverages primary human breast cancer data to investigate our CAF signature expression in a clinically relevant background. The original publications are
-https://www.embopress.org/doi/full/10.15252/embj.2020107333
-https://www.nature.com/articles/s41597-022-01236-2
-for Pal et al.
-and
-https://www.nature.com/articles/s41588-021-00911-1
-for Wu et al.
+[Pal_et_al](https://www.embopress.org/doi/full/10.15252/embj.2020107333), [Pal_et_al_code](https://www.nature.com/articles/s41597-022-01236-2) and [Wu_et_al](https://www.nature.com/articles/s41588-021-00911-1)
 
-For reproducing these analyses, start by downloading the respective files. The Pal et al. data can be downloaded here: https://figshare.com/articles/dataset/Data_R_code_and_output_Seurat_Objects_for_single_cell_RNA-seq_analysis_of_human_breast_tissues/17058077 (SeuratObject_TNBCSub.rds). Save the respective file in `data_pal_et_al`.
-The Wu et al. data can be downloaded from: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078. Unpack the zipped file and transfer the content to `data_wu_et_al`.
+For reproducing these analyses, start by downloading the respective files. The Pal et al. data can be downloaded here: [Pal_et_al_data](https://figshare.com/articles/dataset/Data_R_code_and_output_Seurat_Objects_for_single_cell_RNA-seq_analysis_of_human_breast_tissues/17058077) (SeuratObject_TNBCSub.rds). Save the respective file in `data_pal_et_al`.
+The Wu et al. data can be downloaded from: [Wu_et_al_data](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078). Unpack the zipped file and transfer the content to `data_wu_et_al`.
 
 The analysis was performed in a different R environment than most other analyses. There is a sessionInfo.txt file available in the main folder `TME_primary_data_and_code`.
 The run script `run.main.R` can now be executed.
@@ -49,7 +44,7 @@ All analyses can be executed with the `RUN_liana.R` script, however, note that `
 
 ### TMS analysis
 
-The raw data from the Tabula Muris Senis compendium can be downloaded here: https://figshare.com/ndownloader/files/23872862 and converted to a seurat object, then saved in the `data/` directory.
+The raw data from the Tabula Muris Senis compendium can be downloaded here: [TMS](https://figshare.com/ndownloader/files/23872862) and converted to a seurat object, then saved in the `data/` directory.
 All analyses can be executed via the run script (`TMS_RUN_young_vs_old.R`), in which parameters and options for the analysis can be selected and adapted.
 
 The `multiK_conserveMem.fct` script contains the code for a memory-efficient and parallelizable reimplementation of multiK (original code see: https://github.com/perou-lab/MultiK), which we used to assess optimal clustering resolutions, together with the silhouette score.
@@ -57,3 +52,61 @@ The `multiK_conserveMem.fct` script contains the code for a memory-efficient and
 This whole analysis was conducted on an HPC, therefore the used R environment differs from the one used for the other analyses. The respective sessionInfo file can be found in `TMS_analysis/`.
 
 ## Directory Structure
+```
+├── AgingBreastTME_analysis
+│   ├── 0_combined_analysis.R: analysis script for pre-clustering and re-assignment of cells
+│   ├── 1_clustree.R: clustree analysis
+│   ├── 2_proportion_test.R: proportion tests and exhaustion marker expression
+│   ├── 3_downstream_analyses.R: a collection of downstream analyses and exploratory plots
+│   ├── RUN_AgingBreastTME_analyses.R: master script to run all analyses in this directory
+│   ├── TME.ds_functions.R: function collection
+│   └── sessionInfo.txt: R-environment setup
+├── LICENSE
+├── README.md
+├── TME_CellCellCommunication
+│   ├── 1_liana_generate_ortholog_resource.R: generating ortholog resource to run liana with mouse data
+│   ├── 2_liana_orthologs.R: run liana (using the R environment from sessionInfo_hpc.txt)
+│   ├── 3_liana_plotting.R: plotting and exploring liana results
+│   ├── RUN_liana.R: master script to run all the analyses in this directory
+│   ├── liana.fct.lib.R: function collection
+│   ├── sessionInfo.txt: R-environment setup for all scripts except 2_liana_orthologs.R
+│   └── sessionInfo_hpc.txt: R-environment setup for 2_liana_orthologs.R
+├── TME_primary_data_and_code
+│   ├── data_pal_et_al
+│   │   ├── embj2020107333-sup-0006-tableev2.txt
+│   │   └── embj2020107333-sup-0006-tableev4.txt
+│   ├── data_wu_et_al
+│   │   ├── 41588_2021_911_MOESM4_ESM.S1.txt
+│   │   └── data.preparation.R: data preparation script for wu et al. dataset
+│   ├── libs.R: library collection
+│   ├── references.txt: links to the two original publications
+│   ├── run.comparison.R: script for running comparison analysis
+│   ├── run.main.R: master script to run all the analyses in this directory
+│   ├── run.pal_et_al.R: script to run pal et al analysis
+│   ├── run.wu_et_al.R: script to run wu et al analysis
+│   ├── sessionInfo.txt: R-environment setup
+│   └── signature.txt: gene signature to test
+├── TMS_analysis
+│   ├── TMS.ds_functions.R: function collection
+│   ├── TMS_RUN_young_vs_old.R: master script to run all analyses in this directory
+│   ├── TMS_clustering_res.R: script to determine optimal clutstering resolutions
+│   ├── TMS_header.R: library collection
+│   ├── clustering.fct.R: leiden clustering function for usage with multiK adaptation
+│   ├── clustering_and_composition.R: script for downstream analyses
+│   ├── multiK_conserveMem.fct.R: multiK adaptation (memory efficient and parallelizable)
+│   └── sessionInfo_tms.txt: R-environment setup
+└── data
+    ├── Stromal_Cell_Markers_Minimal.xlsx: stromal cell type signatures from publicly available sources
+    ├── Table_S2_plus_colors.xlsx: Table S2 with the addition of plotting colors for each cluster
+    ├── label_condition_conversion.txt: table to convert experimental labels to analysis labels
+    ├── markers_cd45_soupx.tsv: marker genes for immune compartment
+    ├── markers_epcam_soupx.tsv: marker genes for tumor compartment
+    ├── markers_stromal_soupx.tsv: marker genes for stromal compartment
+    ├── objects_after_QC: folder to save the objects after QC in, if pre-processing should be reproduced
+    ├── plotting_colors.tsv: table with colors for plotting
+    └── scType: code and database for scType cell type annotation (which was subsequently manually refined)
+        ├── ScTypeDB_full_plus_bach_mm.txt
+        ├── gene_sets_prepare.mouse.R
+        └── gene_sets_prepare_multi_tissues.mouse.R
+```
+
