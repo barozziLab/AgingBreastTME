@@ -47,7 +47,7 @@ All analyses can be executed with the `RUN_liana.R` script, however, note that `
 The raw data from the Tabula Muris Senis compendium can be downloaded here: [TMS](https://figshare.com/ndownloader/files/23872862) and converted to a seurat object, then saved in the `data/` directory.
 All analyses can be executed via the run script (`TMS_RUN_young_vs_old.R`), in which parameters and options for the analysis can be selected and adapted.
 
-The `multiK_conserveMem.fct` script contains the code for a memory-efficient and parallelizable reimplementation of multiK (original code see: https://github.com/perou-lab/MultiK), which we used to assess optimal clustering resolutions, together with the silhouette score.
+The `multiK_conserveMem.fct` script contains the code for a memory-efficient and parallelizable reimplementation of multiK (original code see: https://github.com/perou-lab/MultiK), which we used to assess optimal clustering resolutions, together with the silhouette score. A more detailed description of this new implementation of multiK, along with a small usage tutorial can be found here: https://github.com/barozziLab/MultiK_lowMem.
 
 This whole analysis was conducted on an HPC, therefore the used R environment differs from the one used for the other analyses. The respective sessionInfo file can be found in `TMS_analysis/sessionInfo.txt`.
 
